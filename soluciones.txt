@@ -1,0 +1,61 @@
+#######################################################################################################################################
+Santiago Cruz Todd Exp: 260239
+# Teoría
+
+1. Opción b) La bandera -m sirve para especificar el mensaje del commit directamente desde la linea de comandos
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+2. Opción a) Como excepciones o casos avanzados que van más allá de las primeras tres formales formales
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+3. (1NF), esta elimina los grupos repetidos, una tabla está en 1NF si todo atributo en esa relación es "single-valued"
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+4. La diferencia entre Where y Having, primera, yace en su posición dentro del código. Where filtra una fila-record basada en
+condiciones, podría decirse que por su lugar en el código esta se le aplica a la RAW DATA. HAVING de igual manera filtra, esta cláusula
+sigue de Group By, por consiguiente todo filtro se aplica a GRUPOS basada en condciones. Opera con los grupos creados en la clásula previa.
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+5.El orden de ejecución: Opción C)  From, Where, Group By, finalmente Select.
+#--------------------------------------------------------------------------------------------------------------------------------------
+#######################################################################################################################################
+# Práctica
+
+1.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT nombre_materia, AVG(calificacion) as calf_prom -----CÓDIGO PRIMER EJERCICIO EXAMEN 1
+from calificaciones
+where calificacion is NOT NULL
+group by nombre_materia
+order by calf_prom DESC
+
+2.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT DISTINCT a.nombre, a.apellido, a.expediente-----CÓDIGO 2 EXAMEN
+FROM alumnos a
+inner join calificaciones c ON a.expediente = c.expediente
+where c.expediente = a.expediente AND c.calificacion IS NOT NULL > 1
+order by a.apellido;
+
+```
+
+3.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT a.nombre, a.apellido, a.expediente, ----COD 3
+       MAX(c.calificacion) AS maxcal
+FROM alumnos a
+JOIN calificaciones c ON a.expediente = c.expediente
+WHERE c.calificacion IS NOT NULL
+GROUP BY a.expediente, a.nombre, a.apellido
+Order by maxcal DESC;-----esta última linea se agrego para formato visual
+
+```
